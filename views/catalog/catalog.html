@@ -1,0 +1,81 @@
+<div ng-include="'views/catalog/catlogMenu.html'"></div>
+
+<div class = "col-md-12 col-sm-12 col-xs-12 pad">
+	<div class = "col-md-2 col-sm-2 col-xs-12">		
+			<a href = "#/catalog/{{selCategory}}/{{currPage}}/row" class = "link pad2"><span class="glyphicon glyphicon-th-list"></span></a>
+			<a href = "#/catalog/{{selCategory}}/{{currPage}}/col" class = "link pad2"><span class="glyphicon glyphicon-th"></span></a>
+	</div>
+</div>
+<div style = "clear:both"></div>
+
+<div class = "col-md-12 col-sm-12 col-xs-12 pad2">
+	Current Category >> <span class = "greenF">{{selCategory}}</span>
+</div>
+<div style = "clear:both"></div>
+
+<div data-ng-if="rowLayout" >
+	<ul>
+		<li data-ng-repeat="item in categoryPageItems track by $index" class ="border pad">
+			<div class = "col-sm-3 col-xs-12">
+				<img ng-src="{{item.image}}" alt="Description" />
+			</div>
+			<div class = "col-sm-6 col-xs-12">
+				<div class = "col-sm-8 col-xs-12"> 
+					<h2> {{item.name}} </h2>
+				</div>
+				<div class = "col-sm-4 col-xs-12"> 
+					<h2> Price : ${{item.price}} </h2>
+				</div>
+				<div class = "col-sm-12 col-xs-12 greenF pad"> 
+					<b>Category >> {{item.category}}</b>
+				</div>
+				<div class = "col-sm-12 col-xs-12"> 
+					{{item.desc}}
+				</div>
+				<div class = "col-sm-12 col-xs-12 pad" >
+					<a href = "#/inner/{{item.id}}"><button>More</button></a>
+				</div>
+			</div>
+			<div class = "col-sm-3 col-xs-12">
+				<button ng-click="addToCart(item)">
+						Add to Cart
+				</button>
+				<div>
+				 <!-- {{ userCart | filter:{'id': '{{item.id}}'} }} -->
+				</div>
+			</div>	
+			<div class="clearfix"></div>		
+		</li>
+	</ul>
+</div>
+
+<div data-ng-if="colLayout">
+	<ul>
+		<li>
+			<div class = "col-sm-12 col-xs-12">
+				<div class = "col-sm-4 col-xs-12 pad border" data-ng-repeat="item in categoryPageItems track by $index">
+					<div class = "col-sm-12 col-xs-12 textcenter" >
+						<img ng-src="{{item.image}}" alt="Description" class = "catimgcol"/>
+					</div>
+					<div class = "col-sm-12 col-xs-12 textcenter pad">
+						{{item.name}}
+					</div>
+					<div class = "col-sm-6 col-xs-12 textcenter " >
+						<button ng-click="addToCart(item)">Add To Cart</button>
+					</div>	
+					<div class = "col-sm-6 col-xs-12 textcenter pad" >
+						<button>More</button>
+					</div>
+					
+				</div>
+			</div>
+			<div class="clearfix"></div>	
+		</li>
+	</ul>
+</div>
+
+<div class = "col-md-12 col-sm-12 col-xs-12 textcenter pad3 fontHl">
+	<span data-ng-repeat="page in numPagesArray">
+		<a href="#/catalog/{{selCategory}}/{{page}}/{{layout}}" class = "pad border">{{page}}</a>
+	</span>
+</div>

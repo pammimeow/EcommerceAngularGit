@@ -1,0 +1,58 @@
+<div class='col-md-12 col-sm-12 col-xs-12'>
+	<h1> Shopping Cart </h1>
+	<div data-ng-if="userCart.length == 0">
+		No items in shopping cart
+	</div>	
+ 	
+ 	<div data-ng-if="userCart.length > 0">
+		<div class = "row marg pad" >
+			<h4>
+				<div class = 'col-md-1 col-sm-1 col-xs-12'> 
+					Item Image
+				</div>
+				<div class = 'col-md-4 col-sm-4 col-xs-12'> 
+					Item Name
+				</div>
+				<div class = 'col-md-2 col-sm-2 col-xs-12'> 
+					Price
+				</div>
+				<div class = 'col-md-2 col-sm-2 col-xs-12'> 
+					Quantity
+				</div>
+			</h4>
+			
+			<div class = "clearfix"></div>
+		</div>	
+		<div class = "row marg border pad" data-ng-repeat="item in userCart track by $index">
+			<div class = 'col-md-1 col-sm-1 col-xs-12'> 
+				<img ng-src = "{{item.image}}" width="100%" />
+			</div>
+			<div class = 'col-md-4 col-sm-4 col-xs-12'> 
+				{{item.name}}
+			</div>
+			<div class = 'col-md-2 col-sm-2 col-xs-12'> 
+				${{item.price | number:2 }}
+			</div>
+			<div class = 'col-md-2 col-sm-2 col-xs-12'> 
+				{{item.qty}}
+			</div>
+			<div class = 'col-md-2 col-sm-2 col-xs-12'> 
+				<button data-ng-click="changeCart(item.id, '+')">+</button>
+				<button data-ng-click="changeCart(item.id, '-')">-</button>
+			</div>
+			<div class = "clearfix"></div>
+		</div>	
+
+		<div class = "row marg border pad">
+			<div class = 'col-md-4 col-sm-4 col-xs-12'> 
+				<b>Total Price : </b>
+			</div>
+			<div class = 'col-md-4 col-sm-4 col-xs-12'> 
+				${{totalCart | number:2 }}
+			</div>
+			<div class = 'col-md-4 col-sm-4 col-xs-12'> 
+				<button data-ng-click="checkout()"> Checkout </button>
+			</div>
+		</div>
+	</div>
+</div>

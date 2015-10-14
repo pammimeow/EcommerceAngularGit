@@ -1,0 +1,16 @@
+// data format to generate store
+// get at http://www.json-generator.com/
+
+[
+  '{{repeat(100, 200)}}',
+  {
+    id:'{{objectId()}}',
+    name:'{{lorem(2, "words")}}',
+    desc:'{{lorem(1, "paragraphs")}}',
+    price:'{{floating(100, 500)}}',
+    qty:'{{integer(20, 40)}}',
+    image:'{{random("images/1.jpg", "images/2.jpg", "images/3.jpg", "images/5.jpg", "images/5.jpg")}}',
+    category:'{{random("Clothing", "Electronics", "Books", "Music", "Home Decor")}}',
+    reviews:''
+  }
+]

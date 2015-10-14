@@ -1,0 +1,61 @@
+.link {
+	cursor:pointer;
+	text-decoration: underline;
+}
+
+.clearfix {
+	clear:both;
+}
+
+li {
+	list-style: none;	
+}
+
+.textcenter {
+	text-align: center;
+}
+.textright {
+	text-align: right;
+}
+.pad {
+	padding: 1%;
+}
+.marg {
+	margin: 1%;
+}
+.catimgcol {
+	max-height: 200px;
+	min-height: 200px;
+}
+.border {
+	border: 1px solid #ccc;
+}
+.fontHl, .fontHl a  {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.pad2 {
+	padding: 2%;
+}
+
+.pad3 {
+	padding: 3%;
+}
+.greenF {
+	    color: #B9C437;
+}
+button {
+	background-color: #6CCBFB;
+    border: 0;
+    padding: 2%;
+    color: #fff;
+}
+.glyphicon {
+	font-size: 4rem;
+    color: #6CCBFB;
+}
+.padinputchild input {
+	padding:1%;
+	margin: 1%;
+}

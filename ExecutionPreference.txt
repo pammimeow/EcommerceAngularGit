@@ -1,0 +1,7 @@
+Execution Preference
+
+app.config()
+app.run()
+directive's compile functions (if they are found in the dom)
+app.controller()
+directive's link functions (again if found)

@@ -1,0 +1,11 @@
+<div class='col-md-12 col-sm-12 col-xs-12' data-ng-controller="LoginController">
+	<h2> Login Below </h2>
+	<h4> {{UserMessage}}
+	<div class = "row pad padinputchild">
+		<input type = "text" class = "col-md-8 col-sm-8 col-xs-12" placeholder = "Username" data-ng-model = "username" />
+		<input type = "text" class = "col-md-8 col-sm-8 col-xs-12"  placeholder = "password" type = "password" data-ng-model = "password"/>
+
+		<div class = "clearfix"></div>
+		<button data-ng-click="login()" class = "marg"> Login </button>
+	</div>
+</div>
