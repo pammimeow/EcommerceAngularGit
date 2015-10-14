@@ -1,5 +1,6 @@
 app.controller('CatalogController', ['$rootScope','$scope', '$routeParams', '$filter','catalogFactory',
 	 function($rootScope, $scope, $routeParams, $filter, catalogFactory){
+	 		console.log("instance");
 	 		$rootScope.currMenu = "Catalog";
 		 	var maxItemsPage =6;
 		 	$scope.selCategory = $routeParams.type || "All";
@@ -70,7 +71,6 @@ app.controller('CatalogController', ['$rootScope','$scope', '$routeParams', '$fi
 	  					$rootScope.userCart[i].qty = $rootScope.userCart[i].qty + 1;
 	  					isPresent = true;
 	  				}
-
 	  			}
 	  			if(!isPresent)
 	  				$rootScope.userCart.push(newElem);
@@ -78,36 +78,13 @@ app.controller('CatalogController', ['$rootScope','$scope', '$routeParams', '$fi
 	  			console.log(" res "+JSON.stringify($rootScope.userCart));    	
   			}
 
-	  		/*catalogFactory.getCategoryItems().then(function() {
-
-		  		$scope.categoryItems = catalogFactory.categoryItemsResult();
-
-		  		if($scope.selCategory == null || $scope.selCategory == "All") {
-		  			$scope.categoryItemsCurr = $scope.categoryItems;
-		  		}
-		  		else {
-			  		for(var i=0;i<$scope.categoryItems.length;i++) {
-			  			if($scope.categoryItems[i].category == $scope.selCategory) {
-			  					$scope.categoryItemsCurr.push($scope.categoryItems[i]);
-			  			}
-			  		}
-			  	}  	
-
-
-	  		getPageItems();		
-  			console.log("curr items "+JSON.stringify($scope.categoryPageItems));
-  			console.log("num l "+$scope.categoryPageItems.length);
-  			console.log("num l "+JSON.stringify($scope.categoryPageItems[0]));
-  		});*/
-  		
-
   		if($scope.selCategory == null || $scope.selCategory == "All") {
 		  	$scope.categoryItemsCurr = $rootScope.categoryItems;
 		 }
 		else {
 			for(var i=0;i<$rootScope.categoryItems.length;i++) {
 			  	if($rootScope.categoryItems[i].category == $scope.selCategory) {
-			  		$scope.categoryItemsCurr.push($scope.categoryItems[i]);
+			  		$scope.categoryItemsCurr.push($rootScope.categoryItems[i]);
 			  	}
 			}
 		}  	

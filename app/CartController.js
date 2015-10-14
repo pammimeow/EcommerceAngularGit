@@ -38,3 +38,13 @@ app.controller('CartController', ['$rootScope','$scope', '$routeParams', '$locat
 	 		$location.url("/checkout");
 	 	}
 }]);
+
+
+/* some comment test1 */
+
+/* some comment test2 */
+
+/* some comment test3 */
+
+/* some comment test4 */
+

@@ -1,5 +1,6 @@
 app.config(['$routeProvider', '$locationProvider',
 	function($routeProvider, $locationProvider) {
+		console.log("config");
 		$routeProvider.
 	      when('/', {
 	        templateUrl: 'views/home.html',
@@ -36,6 +37,7 @@ app.config(['$routeProvider', '$locationProvider',
 ]);
 
 app.run(function($rootScope, $location, catalogFactory) {
+  console.log("run2");
   $rootScope.isLoggedIn = false;
   $rootScope.currMenu = "Home";
   $rootScope.$on('$routeChangeSuccess', function () {
@@ -49,9 +51,15 @@ app.run(function($rootScope, $location, catalogFactory) {
 		  	console.log("pr "+JSON.stringify($rootScope.categories));
 		});	
 
-		catalogFactory.getCategoryItems().then(function() {
+		catalogFactory.getCategoryItems()
+		.then(function() {
 			$rootScope.dataSource = catalogFactory.categoryItemsResult();
 		  	$rootScope.categoryItems = $rootScope.dataSource;		  
+		  	console.log("on run "+$rootScope.categoryItems.length);
+  		})
+		.catch(function() {
+			console.log("caught ");			
   		});
+
   })
 })

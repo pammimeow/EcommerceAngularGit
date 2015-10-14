@@ -1,10 +1,15 @@
 app.factory('catalogFactory', [
-      '$q', '$http', '$rootScope',
-        function($q, $http) {
+      '$q', '$http',  '$rootScope',
+        function($q, $http, $rootScope) {
        	  var categories = null;
        	  var categoryItems = null;
 
-          var getCategories = function() {
+          var catalogFactoryObject = {};
+
+          console.log("factory");
+
+          catalogFactoryObject.getCategories = function() {
+            console.log("in factory m");
             var deferred = $q.defer(); 
             $http.get('db/categories.js')
             .success(function(data) {
@@ -19,11 +24,11 @@ app.factory('catalogFactory', [
             return deferred.promise;
           };
 
-          var categoriesResult = function() {
+          catalogFactoryObject.categoriesResult = function() {
           	return categories;
           };
 
-          var getCategoryItems = function() {
+          catalogFactoryObject.getCategoryItems = function() {
             var deferred = $q.defer(); 
             $http.get('db/datastore.js')
             .success(function(data) {            	
@@ -38,11 +43,11 @@ app.factory('catalogFactory', [
             return deferred.promise;
           };
 
-          var categoryItemsResult = function() {
+          catalogFactoryObject.categoryItemsResult = function() {
           	return categoryItems;
           };
 
-          var getItemById = function(itemId) {             
+          catalogFactoryObject.getItemById = function(itemId) {             
                 for(var i=0;i<categoryItems.length;i++) {
                     if(categoryItems[i].id == itemId) {
                           return categoryItems[i];
@@ -51,16 +56,20 @@ app.factory('catalogFactory', [
               return null;
           }
 
-          var getSearchItems = function(searchStr) {
+          catalogFactoryObject.getSearchItems = function(searchStr) {
+              catalogFactoryObject.getCategoryItems().then(function() {
+                  $rootScope.categoryItems = [];
+                  for(var i=0;i<categoryItems.length;i++) {
+                          if((categoryItems[i].name.indexOf(searchStr) > -1) || 
+                            (categoryItems[i].desc.indexOf(searchStr) > -1)) {
+                                $rootScope.categoryItems.push(categoryItems[i]);
+                          }
+                  }                  
+              });   
 
+              console.log("af in "+$rootScope.categoryItems.length);           
           }
           
-          return {
-          	getCategories:getCategories,
-          	categoriesResult : categoriesResult,
-          	getCategoryItems : getCategoryItems,
-            categoryItemsResult: categoryItemsResult,
-            getItemById : getItemById
-          };
+          return catalogFactoryObject;
     }]);
 

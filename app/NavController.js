@@ -10,5 +10,8 @@ app.controller('NavController', ['$rootScope','$scope', '$routeParams', '$locati
 
 	 	$scope.search = function() {
 	 		console.log("search "+$scope.obj.searchCatalog);
+	 		catalogFactory.getSearchItems($scope.obj.searchCatalog);
+	 		console.log("af "+$rootScope.categoryItems.length);
+	 		$location.url("/catalog");
 	 	}
 }]);
